@@ -14,9 +14,19 @@ if((defined($ARGV[0]))&&($ARGV[0] eq 'start'))
 	our $server = Net::Server::smdr->new(conf_file => "$FindBin::Bin/../etc/smdr.cfg"); 
 	$server->run(); # Поехали!
 }
-elsif((defined($ARGV[0]))&&(($ARGV[0] eq 'stop')||($ARGV[0] eq 'kill')))
+elsif( defined($ARGV[0]) && (($ARGV[0] eq 'stop')||($ARGV[0] eq 'kill')) )
 {
-	qx('/usr/bin/killall smdrsrv.pl');
+	qx(/usr/bin/killall smdrsrv.pl);
+}
+elsif(defined($ARGV[0])&&($ARGV[0] eq 'status'))
+{
+#        qx(/bin/ps -ef|/bin/grep smdrsrv.p[l]);
+}
+elsif(defined($ARGV[0])&&($ARGV[0] eq 'restart'))
+{
+        qx($FindBin::Bin/smdrsrv.pl stop);
+	sleep(10);
+	qx($FindBin::Bin/smdrsrv.pl start);
 }
 elsif((defined($ARGV[0]))&&(($ARGV[0] eq 'help')||($ARGV[0] eq '-h')))
 {

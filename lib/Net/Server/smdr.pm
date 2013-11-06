@@ -5,6 +5,7 @@ use DBI;
 use strict; # Так в книжке написано ;)
 use warnings;
 use base qw(Net::Server::PreFork); # Наследуем
+#use base qw(Net::Server::Single); # Наследуем
 
 my $dbhost = 'localhost';
 my $dbname = 'smdr';
@@ -77,6 +78,12 @@ sub process_request {   # Собственно, здесь и выполняет
                   "ExternalTargetedNumber = '$ExternalTargetedNumber'";
 
         print FH " $cmd\n";
+	
+	#if( $RingTime >= 3 && $ConnectedTime == 0 && ( $CalledNumber == 3020 || $CalledNumber == 4020 || $CalledNumber == 7020 ) ){
+	if( $ConnectedTime eq '0' && $RingTime > 2 && $Caller =~ /^8*/ && ( $CalledNumber == 3020 || $CalledNumber == 4020 || $CalledNumber == 7020 ) ){
+		qx(/usr/bin/mailx -s "[Missed call] $CallStart, $Caller -> $CalledNumber" kav\@at-consulting.ru vkarmanov\@at-consulting.ru < /dev/null );
+		#print FH "------------------ =)) -------------------------";
+	}
 
         my $sth = $dbh->do($cmd);
         last if /quit/i;

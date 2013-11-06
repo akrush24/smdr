@@ -78,8 +78,23 @@ $connect_to_db = mysql_connect($db_host, $db_username, $db_password)
 mysql_select_db($db_name, $connect_to_db)
 	or die("Could not select DB: " . mysql_error());
 
+/*
+echo '<td id="head">Дата</th>';
+echo '<td id="head">Длительность</th>';
+echo '<td id="head">RingTime</th>';
+echo '<td id="head">Номер1</th>';
+echo '<td id="head">Номер2</th>';
+echo '<td id="head">Кто</th>';
+echo '<td id="head">Кому</th>';
+echo '<td id="head">Направление</th>';
+echo '<td id="head">Внутренний звонок?</th>';
+echo '<td id="head">Dialled</th>';
+echo '<td id="head">ExternalTargeterid</th>';
+*/
+
 $rows[] = 'CallStart';
 $rows[] = 'ConnectedTime';
+$rows[] = 'RingTime';
 $rows[] = 'Caller';
 $rows[] = 'CalledNumber';
 $rows[] = 'Party1Name';
@@ -88,6 +103,7 @@ $rows[] = 'Direction';
 $rows[] = 'IsInternal';
 $rows[] = 'DialledNumber';
 $rows[] = 'ExternalTargeterId';
+
 
 foreach ($rows as $row_name){
 	if( $_POST[$row_name] != '' ){
@@ -141,6 +157,7 @@ echo '<tr>';
 echo '<td id="head">#</th>';
 echo '<td id="head">Дата</th>';
 echo '<td id="head">Длительность</th>';
+echo '<td id="head">RingTime</th>';
 echo '<td id="head">Номер1</th>';
 echo '<td id="head">Номер2</th>';
 echo '<td id="head">Кто</th>';
@@ -177,6 +194,7 @@ while($data = mysql_fetch_array($qr_result)){
 	echo '<td>'.$INDEX.'</th>';
 	echo '<td>' . $data['CallStart'] . '</td>';
 	echo '<td>' . $data['ConnectedTime'] . '</td>';
+	echo '<td>' . $data['RingTime'] . '</td>';
 	echo '<td>' . $data['Caller'] . '</td>';
 	echo '<td>' . $data['CalledNumber'] . '</td>';
 	echo '<td>' . $data['Party1Name'] . '</td>';
