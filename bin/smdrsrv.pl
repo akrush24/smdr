@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
-use strict;
-use warnings;
+#use strict;
+#use warnings;
 use FindBin;
 
 use lib "$FindBin::Bin/../lib"; # Хороший тон: держим исполняемый файл в bin,
@@ -20,20 +20,23 @@ elsif( defined($ARGV[0]) && (($ARGV[0] eq 'stop')||($ARGV[0] eq 'kill')) )
 }
 elsif(defined($ARGV[0])&&($ARGV[0] eq 'status'))
 {
-#        qx(/bin/ps -ef|/bin/grep smdrsrv.p[l]);
+	for(qx(/bin/ps -ef)){print if(m/smdrsrv.pl\sstart/g)}
+
 }
 elsif(defined($ARGV[0])&&($ARGV[0] eq 'restart'))
 {
-        qx($FindBin::Bin/smdrsrv.pl stop);
-	sleep(10);
-	qx($FindBin::Bin/smdrsrv.pl start);
+        #qx($FindBin::Bin/smdrsrv.pl stop);
+	#usleep(1000);
+	#qx($FindBin::Bin/smdrsrv.pl start);
 }
-elsif((defined($ARGV[0]))&&(($ARGV[0] eq 'help')||($ARGV[0] eq '-h')))
+else
 {
-	print 'Usage:
+print 'Usage:
+	status
 	start
 	stop
 	help
 ';
+
 }
 

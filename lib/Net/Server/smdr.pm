@@ -79,10 +79,8 @@ sub process_request {   # Собственно, здесь и выполняет
 
         print FH " $cmd\n";
 	
-	#if( $RingTime >= 3 && $ConnectedTime == 0 && ( $CalledNumber == 3020 || $CalledNumber == 4020 || $CalledNumber == 7020 ) ){
 	if( $ConnectedTime eq '0' && $RingTime > 2 && $Caller =~ /^8*/ && ( $CalledNumber == 3020 || $CalledNumber == 4020 || $CalledNumber == 7020 ) ){
-		qx(/usr/bin/mailx -s "[Missed call] $CallStart, $Caller -> $CalledNumber" kav\@at-consulting.ru vkarmanov\@at-consulting.ru < /dev/null );
-		#print FH "------------------ =)) -------------------------";
+		qx(/usr/bin/mailx -s "[Missed call] $CallStart, $Caller -> $CalledNumber" vkarmanov\@at-consulting.ru < /dev/null );
 	}
 
         my $sth = $dbh->do($cmd);
