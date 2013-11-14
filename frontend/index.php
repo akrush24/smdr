@@ -142,9 +142,11 @@ foreach ($rows as $row_name){
 if( !is_null($WHERE) ){
 	#print "<br><b> select * from $db_table_to_show where $WHERE</b><br>";
 	$qr_result = mysql_query("select * from $db_table_to_show where $WHERE") or die(mysql_error());	
+	print 'select * from $db_table_to_show where '.$WHERE;
 }else{
 	#print "select * from $db_table_to_show where Callstart like '".date("Y-m-d H")."%'";
 	$qr_result = mysql_query("select * from $db_table_to_show where Callstart like '".date("Y-m-d H")."%'" ) or die(mysql_error());
+	print 'select * from $db_table_to_show where Callstart like '.date("Y-m-d H").'%';
 };
 
 //$qr_result = mysql_query("select * from $db_table_to_show where caller = '3010' " )
