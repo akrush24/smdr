@@ -24,24 +24,24 @@ chart : {
 type : 'spline'
 },
 title : {
-text : 'Highcharts with mySQL, PHP and AJAX'
+text : 'Telephone Call Traffic'
 },
 subtitle : {
-text : 'Source: Ajax101.com'
+text : 'Counts calls'
 },
 xAxis : {
 title : {
-text : 'Months'
+text : 'Date'
 },
 categories : months
 },
 yAxis : {
 title : {
-text : 'Days'
+text : 'Calls'
 },
 labels : {
 formatter : function() {
-return this.value + 'days'
+return this.value + ' calls'
 }
 }
 },
@@ -61,7 +61,7 @@ lineWidth : 1
 },
 series : [{
 
-name : 'Days',
+name : 'Calls',
 data : days
 }]
 });

@@ -78,10 +78,10 @@ sub process_request {   # Собственно, здесь и выполняет
                   "ExternalTargetedNumber = '$ExternalTargetedNumber'";
 
         print FH " $cmd\n";
-	
-	if( $ConnectedTime eq '0' && $RingTime > 1 && $Caller =~ /^8*/ && ( $CalledNumber == 3020 || $CalledNumber == 4020 || $CalledNumber == 7020 ) ){
-		qx(/usr/bin/mailx -s "[Missed call] $CallStart, $Caller -> $CalledNumber" vkarmanov\@at-consulting.ru ksoldatenkov\@at-consulting.ru < /dev/null );
-	}
+# notification by e-mail	
+#	if( $ConnectedTime eq '0' && $RingTime > 1 && $Caller =~ /^8*/ && ( $CalledNumber == 3020 || $CalledNumber == 4020 || $CalledNumber == 7020 ) ){
+#		qx(/usr/bin/mailx -s "[Missed call] $CallStart, $Caller -> $CalledNumber" vkarmanov\@at-consulting.ru ksoldatenkov\@at-consulting.ru < /dev/null );
+#	}
 
         my $sth = $dbh->do($cmd);
         last if /quit/i;
