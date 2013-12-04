@@ -1,5 +1,7 @@
 DROP TABLE IF EXISTS `smdr`;
 
+#TEST#
+
 CREATE TABLE `smdr` (
   `CallStart` varchar(250) CHARACTER SET utf8 NOT NULL,
   `ConnectedTime` varchar(250) CHARACTER SET utf8 NOT NULL,
