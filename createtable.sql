@@ -34,3 +34,8 @@ CREATE TABLE `smdr` (
   `ExternalTargeterId` text CHARACTER SET utf8 NOT NULL,
   `ExternalTargetedNumber` text CHARACTER SET utf8 NOT NULL
 ) ENGINE=MyISAM CHARACTER SET=utf8
+
+
+
+#####
+END OF FILE
