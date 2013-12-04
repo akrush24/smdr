@@ -1,3 +1,4 @@
+/* CREATE SMDR TABLES  */
 DROP TABLE IF EXISTS `smdr`;
 
 #TEST#
