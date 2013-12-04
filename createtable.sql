@@ -1,7 +1,5 @@
-/* CREATE SMDR TABLES  */
 DROP TABLE IF EXISTS `smdr`;
 
-#TEST#
 
 CREATE TABLE `smdr` (
   `CallStart` varchar(250) CHARACTER SET utf8 NOT NULL,
@@ -36,7 +34,3 @@ CREATE TABLE `smdr` (
   `ExternalTargetedNumber` text CHARACTER SET utf8 NOT NULL
 ) ENGINE=MyISAM CHARACTER SET=utf8
 
-
-
-#####
-END OF FILE
