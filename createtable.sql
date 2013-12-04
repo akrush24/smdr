@@ -1,3 +1,4 @@
+# drop 
 DROP TABLE IF EXISTS `smdr`;
 
 CREATE TABLE `smdr` (
