@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Datastore</title>
+  <script src="https://www.google.com/jsapi"></script>
+  <script>
+   google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+     ['Name', 'Capacity', 'Used', 'Free'],
+     ['P2000G3 Sav', 12000, 11210, 1520],
+     ['P2000G3 Hut', 10900, 6940, 2170],
+     ['DS3512'     , 5450, 4620, 858],
+     ['DS3300'     , 7000, 5630, 1370],
+    ]);
+    var options = {
+     title: 'Share Storage',
+     hAxis: {title: 'Storages'},
+     vAxis: {title: 'GB'}
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById('oil'));
+    chart.draw(data, options);
+   }
+  </script>
+ </head>
+ <body>
+  <div id="oil" style="width: 100%; height: 600px;"></div>
+ </body>
+ </html>

@@ -1,11 +1,11 @@
 #!/usr/bin/perl
-
 package Net::Server::smdr; # Объявляем свой пакет
 use DBI;
-use strict; # Так в книжке написано ;)
-use warnings;
+#use strict; # Так в книжке написано ;)
+#use warnings;
 use base qw(Net::Server::PreFork); # Наследуем
 #use base qw(Net::Server::Single); # Наследуем
+use Encode;
 
 my $dbhost = 'localhost';
 my $dbname = 'smdr';
@@ -42,6 +42,13 @@ sub process_request {   # Собственно, здесь и выполняет
         $ParkTime = 0 if $ParkTime eq '';
         $AuthValid = 0 if $AuthValid eq '';
 
+        #sendsms on missed call  
+        if( $Caller =~ m/..../ && $ConnectedTime == 0 && $CalledNumber =~ m/8........../){
+        my $nameconv = encode('cp1251', decode('utf8', $Party1Name));
+         `/usr/bin/perl /home/user/check.pl $CalledNumber $Caller  $nameconv `;
+        }
+
+        
         my $dbh = DBI->connect('DBI:mysql:'.$dbname.':'.$dbhost,$dbuser,$dbpass,{RaiseError => 1}) or print STDERR "connecting: $DBI::errstr\n";
         $dbh->do("SET NAMES UTF8");
 
@@ -79,9 +86,6 @@ sub process_request {   # Собственно, здесь и выполняет
 
         print FH " $cmd\n";
 # notification by e-mail	
-#	if( $ConnectedTime eq '0' && $RingTime > 1 && $Caller =~ /^8*/ && ( $CalledNumber == 3020 || $CalledNumber == 4020 || $CalledNumber == 7020 ) ){
-#		qx(/usr/bin/mailx -s "[Missed call] $CallStart, $Caller -> $CalledNumber" vkarmanov\@at-consulting.ru ksoldatenkov\@at-consulting.ru < /dev/null );
-#	}
 
         my $sth = $dbh->do($cmd);
         last if /quit/i;

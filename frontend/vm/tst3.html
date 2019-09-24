@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Datastore</title>
+  <script src="https://www.google.com/jsapi"></script>
+  <script>
+   google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+     ['DatastoreName', 'TotalSpaceGB', 'UsedSpaceGB', 'ProvisionedSpaceGB', 'FreeSpaceGB'], 
+     ['DS3300',7168,5763,7996,1405],
+     ['DS3500_lun0',2729,2159,3733,570],
+     ['DS3500_lun1',2857,2568,3443,289],
+     ['isostore',404,364,364,40],
+     ['nas-store3-r6',6463,0,0,6463],
+     ['nexenta01',3174,317,1370,2857],
+     ['nexenta02',3554,697,3919,2857],
+     ['P2000g3_R10',5583,5112,5763,471],
+     ['P2000g3_R6',7444,6362,7468,1082],
+     ['vmstore01',2046,714,891,1332],
+     ['vmstore03',3529,1561,2045,1968],
+    ]);
+    var options = {
+     legend: { position: 'top', alignment: 'start' },
+     title: 'Share Storage',
+     hAxis: {title: 'Storages'},
+     vAxis: {title: 'GB'}
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById('oil'));
+    chart.draw(data, options);
+   }
+  </script>
+ </head>
+ <body>
+  <div id="oil" style="width: 100%; height: 600px;"></div>
+ </body>
+ </html>
+

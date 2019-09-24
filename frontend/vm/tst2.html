@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+
+
+     ['DatastoreName', 'TotalSpaceGB', 'UsedSpaceGB', 'ProvisionedSpaceGB', 'FreeSpaceGB'],
+
+     ['[SAV].DS3300',7168,5763,7996,1405],
+     ['[SAV].DS3500_lun0',2729,2159,3733,570],
+     ['[SAV].DS3500_lun1',2857,2568,3443,289],
+     ['[SAV].P2000g3_R10',5583,5112,5763,471],
+     ['[SAV].P2000g3_R6',7444,6362,7468,1082],
+     ['[HUTOR].p2000g3_r6_lun0',5583,3741,4961,1842],
+     ['[HUTOR].p2000g3_r6_lun1',5583,3363,4880,2220],
+
+ ]);
+        var options = {
+          legend: { position: 'top', alignment: 'start' },
+          title: 'iSCSI Share Storages',
+          chartArea:{left:220,top:80},
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <b>Total: <tt>36947GB</tt>; 
+    <b>Used: <tt>29068GB</tt>; 
+    <b>Free: <tt>7879GB</tt>; 
+    <b>Provisioned: <tt>38244GB</tt></b>
+
+    <div id="chart_div" style="width: 1000px; height: 700px;"></div>
+  </body>
+</html>
+
